@@ -18,7 +18,7 @@ import DashboardHome from "./pages/admin/Dashboard";
 import ProductManagement from "./pages/admin/productmanagement";
 import Orders from "./pages/admin/Order";
 import Clients from "./pages/admin/user";
-import Settings from "./pages/admin/Settings";
+import Settings from "./pages/admin/settings";
 import BlogAdmin from "./pages/admin/blogA";
 
 export default function App() {

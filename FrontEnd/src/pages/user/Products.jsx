@@ -27,7 +27,7 @@ export default function ProductsSection() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await API.get("/productmanagement"); // ✔ CORRIGÉ
+        const res = await API.get("/productmanagement"); 
         setProducts(res.data);
       } catch (err) {
         console.error("Erreur chargement produits", err);
@@ -161,7 +161,7 @@ export default function ProductsSection() {
           >
             <div className="relative h-56 w-full overflow-hidden">
               <img
-                src={product.media} // ✔ Cloudinary direct
+                src={product.media} 
                 alt={product.name}
                 className="h-full w-full object-cover"
               />

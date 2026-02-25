@@ -18,7 +18,7 @@ export default function BlogSection() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await API.get("/api/blogs");
+        const res = await API.get("/blogs"); // ✔ CORRIGÉ : plus de /api
         setBlogs(res.data);
       } catch (err) {
         console.error("Erreur récupération blogs :", err);
@@ -27,17 +27,14 @@ export default function BlogSection() {
     fetchBlogs();
   }, []);
 
-  // Lecture / pause vidéo
   const toggleVideo = (index) => {
     const currentVideo = videoRefs.current[index];
     if (!currentVideo) return;
 
-    // Pause toutes les autres vidéos
     videoRefs.current.forEach((video, i) => {
       if (video && i !== index) video.pause();
     });
 
-    // Toggle lecture
     if (playingIndex === index) {
       currentVideo.pause();
       setPlayingIndex(null);
@@ -47,7 +44,6 @@ export default function BlogSection() {
     }
   };
 
-  // Détection automatique du type si manquant
   const detectType = (blog) => {
     if (blog.type) return blog.type;
 
@@ -55,14 +51,13 @@ export default function BlogSection() {
     if (blog.mediaUrl) return "video";
     if (blog.imageUrl) return "image";
 
-    return "image"; // fallback
+    return "image";
   };
 
   return (
     <section className="w-full bg-black py-24 px-6">
       <div className="max-w-6xl mx-auto">
 
-        {/* ===== Titre ===== */}
         <motion.div
           variants={fadeUp}
           initial="hidden"
@@ -78,9 +73,7 @@ export default function BlogSection() {
           </p>
         </motion.div>
 
-        {/* ===== Grid ===== */}
         <div className="grid md:grid-cols-3 gap-10">
-
           {blogs.map((blog, index) => {
             const type = detectType(blog);
 
@@ -95,8 +88,7 @@ export default function BlogSection() {
               >
                 <div className="relative h-52 w-full overflow-hidden cursor-pointer">
 
-                  {/* === VIDEO LOCALE === */}
-                  {(type === "video" && blog.mediaUrl) && (
+                  {type === "video" && blog.mediaUrl && (
                     <div onClick={() => toggleVideo(index)}>
                       <video
                         ref={(el) => (videoRefs.current[index] = el)}
@@ -113,8 +105,7 @@ export default function BlogSection() {
                     </div>
                   )}
 
-                  {/* === VIDEO YOUTUBE === */}
-                  {(type === "youtube" && blog.youtubeUrl) && (
+                  {type === "youtube" && blog.youtubeUrl && (
                     <iframe
                       className="h-full w-full object-cover"
                       src={blog.youtubeUrl.replace("watch?v=", "embed/")}
@@ -124,8 +115,7 @@ export default function BlogSection() {
                     />
                   )}
 
-                  {/* === IMAGE === */}
-                  {(type === "image" && blog.imageUrl) && (
+                  {type === "image" && blog.imageUrl && (
                     <img
                       src={blog.imageUrl}
                       alt={blog.title}
@@ -146,7 +136,6 @@ export default function BlogSection() {
               </motion.div>
             );
           })}
-
         </div>
       </div>
     </section>

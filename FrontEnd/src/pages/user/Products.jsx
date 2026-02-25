@@ -27,10 +27,10 @@ export default function ProductsSection() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await API.get("/api/productmanagement");
+        const res = await API.get("/productmanagement"); // ✔ CORRIGÉ
         setProducts(res.data);
-      } catch {
-        console.error("Erreur chargement produits");
+      } catch (err) {
+        console.error("Erreur chargement produits", err);
       }
     };
     fetchProducts();
@@ -40,7 +40,7 @@ export default function ProductsSection() {
   useEffect(() => {
     const fetchCart = async () => {
       try {
-        const res = await API.get("/api/cart");
+        const res = await API.get("/cart");
         setCart(res.data.items || []);
       } catch {
         console.warn("Panier non chargé (utilisateur non connecté)");
@@ -52,7 +52,7 @@ export default function ProductsSection() {
   // Ajouter au panier
   const handleAddToCart = async (product, qty = 1) => {
     try {
-      const res = await API.post("/api/cart", {
+      const res = await API.post("/cart", {
         productId: product._id,
         quantity: qty,
       });
@@ -68,7 +68,7 @@ export default function ProductsSection() {
   const updateQuantity = async (productId, newQty) => {
     if (!productId) return;
     try {
-      const res = await API.put("/api/cart", {
+      const res = await API.put("/cart", {
         productId,
         quantity: newQty,
       });
@@ -82,7 +82,7 @@ export default function ProductsSection() {
   const removeItem = async (productId) => {
     if (!productId) return;
     try {
-      const res = await API.delete(`/api/cart/item/${productId}`);
+      const res = await API.delete(`/cart/item/${productId}`);
       setCart(res.data.items);
     } catch (err) {
       handleAuthError(err, "supprimer un produit du panier");
@@ -92,14 +92,14 @@ export default function ProductsSection() {
   // Vider le panier
   const clearCart = async () => {
     try {
-      await API.delete("/api/cart/clear");
+      await API.delete("/cart/clear");
       setCart([]);
     } catch (err) {
       handleAuthError(err, "vider votre panier");
     }
   };
 
-  //  VALIDER LA COMMANDE 
+  // Valider la commande
   const validateOrder = async () => {
     try {
       const formattedProducts = cart.map(item => ({
@@ -107,7 +107,7 @@ export default function ProductsSection() {
         quantity: item.quantity
       }));
 
-      await API.post("/api/orders", {
+      await API.post("/orders", {
         products: formattedProducts
       });
 
@@ -161,11 +161,7 @@ export default function ProductsSection() {
           >
             <div className="relative h-56 w-full overflow-hidden">
               <img
-                src={
-                  product.media?.startsWith("http")
-                    ? product.media
-                    : `http://localhost:5000/uploads/${product.media}`
-                }
+                src={product.media} // ✔ Cloudinary direct
                 alt={product.name}
                 className="h-full w-full object-cover"
               />

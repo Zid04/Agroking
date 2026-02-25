@@ -10,7 +10,8 @@ export default function Orders() {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await API.get("/api/orders/all");
+       
+        const res = await API.get("/orders/all");
         setOrders(res.data);
       } catch (err) {
         console.error(err);
@@ -24,7 +25,8 @@ export default function Orders() {
   // Mise à jour du statut
   const updateStatus = async (id, newStatus) => {
     try {
-      await API.put(`/api/orders/${id}/status`, { status: newStatus });
+      // ✔ ROUTE CORRIGÉE
+      await API.put(`/orders/${id}/status`, { status: newStatus });
 
       setOrders((prev) =>
         prev.map((o) =>
@@ -41,7 +43,8 @@ export default function Orders() {
   const handleDelete = async (id) => {
     if (window.confirm("Voulez-vous vraiment supprimer cette commande ?")) {
       try {
-        await API.delete(`/api/orders/${id}`);
+       
+        await API.delete(`/orders/${id}`);
         setOrders(orders.filter((o) => o._id !== id));
       } catch (err) {
         console.error(err);

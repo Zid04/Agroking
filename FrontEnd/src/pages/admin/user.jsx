@@ -21,7 +21,8 @@ export default function Clients() {
   useEffect(() => {
     const fetchClients = async () => {
       try {
-        const res = await API.get("/api/users");
+        
+        const res = await API.get("/users");
         setClients(res.data);
       } catch (err) {
         console.error(err);
@@ -36,7 +37,8 @@ export default function Clients() {
   const handleDelete = async (id) => {
     if (window.confirm("Voulez-vous vraiment supprimer cet utilisateur ?")) {
       try {
-        await API.delete(`/api/users/${id}`);
+       
+        await API.delete(`/users/${id}`);
         setClients(clients.filter((c) => c._id !== id));
       } catch (err) {
         console.error(err);
@@ -66,8 +68,8 @@ export default function Clients() {
 
     try {
       if (isEditing) {
-        // UPDATE
-        const res = await API.put(`/api/users/${editId}`, formData);
+        
+        const res = await API.put(`/users/${editId}`, formData);
 
         setClients(
           clients.map((c) => (c._id === editId ? res.data.user : c))
@@ -75,8 +77,8 @@ export default function Clients() {
 
         alert("Utilisateur mis à jour !");
       } else {
-        // CREATE
-        const res = await API.post("/api/users/create", formData);
+        
+        const res = await API.post("/users/create", formData);
         setClients([...clients, res.data.user]);
         alert("Utilisateur créé !");
       }

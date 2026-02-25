@@ -19,10 +19,11 @@ export default function ProductManagement() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const resProducts = await API.get("/api/productmanagement");
+        // ✔ ROUTES CORRIGÉES
+        const resProducts = await API.get("/productmanagement");
         setProducts(resProducts.data);
 
-        const resCategories = await API.get("/api/productmanagement/categories");
+        const resCategories = await API.get("/productmanagement/categories");
         setCategories(resCategories.data);
       } catch (err) {
         console.error(err);
@@ -53,7 +54,8 @@ export default function ProductManagement() {
       payload.append("price", formData.price);
       if (formData.media) payload.append("media", formData.media);
 
-      const res = await API.post("/api/productmanagement", payload);
+      // ✔ ROUTE CORRIGÉE
+      const res = await API.post("/productmanagement", payload);
 
       setProducts([...products, res.data]);
       setFormData({ name: "", category: "", price: "", media: null });
@@ -69,7 +71,8 @@ export default function ProductManagement() {
     if (!window.confirm("Voulez-vous vraiment supprimer ce produit ?")) return;
 
     try {
-      await API.delete(`/api/productmanagement/${id}`);
+      // ✔ ROUTE CORRIGÉE
+      await API.delete(`/productmanagement/${id}`);
       setProducts(products.filter((p) => p._id !== id));
     } catch (err) {
       console.error(err);
@@ -97,7 +100,8 @@ export default function ProductManagement() {
       payload.append("price", formData.price);
       if (formData.media) payload.append("media", formData.media);
 
-      const res = await API.put(`/api/productmanagement/${id}`, payload);
+      // ✔ ROUTE CORRIGÉE
+      const res = await API.put(`/productmanagement/${id}`, payload);
 
       setProducts(products.map((p) => (p._id === id ? res.data : p)));
       setEditingId(null);
@@ -219,7 +223,7 @@ export default function ProductManagement() {
                       name="category"
                       value={formData.category}
                       onChange={handleChange}
-                     className="px-4 py-2 rounded-lg bg-white/10 text-white border border-white/20 appearance-none bg-transparent"
+                      className="px-4 py-2 rounded-lg bg-white/10 text-white border border-white/20 appearance-none bg-transparent"
                     >
                       {categories.map((cat) => (
                         <option key={cat} value={cat}>

@@ -9,12 +9,12 @@ export default function DashboardHome() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Récupérer toutes les commandes
-        const ordersRes = await API.get("/api/orders/all");
+        // ✔ Récupérer toutes les commandes 
+        const ordersRes = await API.get("/orders/all");
         setOrders(ordersRes.data);
 
-        // Récupérer tous les utilisateurs
-        const usersRes = await API.get("/api/users");
+        // ✔ Récupérer tous les utilisateurs 
+        const usersRes = await API.get("/users");
         setUsersCount(usersRes.data.length);
 
       } catch (err) {

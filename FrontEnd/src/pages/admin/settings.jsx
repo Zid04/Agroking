@@ -10,7 +10,8 @@ export default function Settings() {
   useEffect(() => {
     const fetchSettings = async () => {
       try {
-        const res = await API.get("/api/settings");
+        
+        const res = await API.get("/settings");
         setSettings(res.data);
       } catch {
         toast.error("Erreur chargement paramètres");
@@ -30,7 +31,8 @@ export default function Settings() {
     e.preventDefault();
 
     try {
-      await API.put("/api/settings", settings);
+      
+      await API.put("/settings", settings);
       toast.success("Paramètres sauvegardés !");
     } catch {
       toast.error("Erreur sauvegarde");

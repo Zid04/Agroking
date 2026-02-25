@@ -20,7 +20,7 @@ export default function BlogAdmin() {
   // Charger les blogs
   const fetchBlogs = async () => {
     try {
-      const res = await API.get("/api/blogs");
+      const res = await API.get("/blogs");   
       setBlogs(res.data);
     } catch {
       toast.error("Erreur récupération blogs");
@@ -79,7 +79,6 @@ export default function BlogAdmin() {
     try {
       const payload = new FormData();
 
-      // Ajouter uniquement les champs non vides
       Object.entries(form).forEach(([key, value]) => {
         if (value && key !== "imageUrl") {
           if (key === "imageFile") payload.append("image", value);
@@ -88,10 +87,10 @@ export default function BlogAdmin() {
       });
 
       if (editingId) {
-        await API.put(`/api/blogs/${editingId}`, payload);
+        await API.put(`/blogs/${editingId}`, payload);   
         toast.success("Article modifié !");
       } else {
-        await API.post("/api/blogs", payload);
+        await API.post("/blogs", payload);               
         toast.success("Article publié !");
       }
 
@@ -109,7 +108,7 @@ export default function BlogAdmin() {
     if (!confirm("Supprimer cet article ?")) return;
 
     try {
-      await API.delete(`/api/blogs/${id}`);
+      await API.delete(`/blogs/${id}`);   
       toast.success("Article supprimé");
       fetchBlogs();
     } catch {

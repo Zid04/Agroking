@@ -1,0 +1,104 @@
+@import 'tailwindcss';
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  color-scheme: light dark;
+  color: #fff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #000; 
+}
+
+
+h1, h2, h3 {
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
+
+a {
+  color: #d1d2d2;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.25s;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #0cf4e4;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  color: #000;
+  border-color: #0889f3;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+select {
+  background-color: rgba(255, 255, 255, 0.05) ;
+  color: white
+}
+
+select option {
+  background-color: #0f172a ; 
+  color: white ;
+}
+
+
+
+@media (prefers-color-scheme: light) {
+  a:hover {
+    color: #0cf4e4;
+  }
+  button {
+    background-color: #0cf4e4;
+  }
+}
+
+/* Forcer le fond global noir pour l'application */
+:root, html, body, #root {
+  background-color: #000 !important;
+}
+
+/* Tailwind base overrides pour sections 
+section {
+  width: 100%;
+  padding: 3rem 1.5rem;
+  background-color: transparent;
+}*/
+
+/* Navbar fix */
+nav {
+  z-index: 50;
+}
+
+/* Responsive fixes */
+@media (max-width: 768px) {
+  html, body {
+    font-size: 14px;
+  }
+}

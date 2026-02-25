@@ -1,26 +1,27 @@
 import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../assets/logo.png";
 
 function NavbarAdmin() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const navigate = useNavigate();
 
   const isLoggedIn = !!localStorage.getItem("token");
 
   const logout = () => {
     localStorage.removeItem("token");
-    window.location.href = "/login";
+    navigate("/login");
   };
 
   const links = [
-    { name: "Tableau de bord", href: "/admin" },
-    { name: "Gestion de Produit", href: "/admin/productmanagement" },
-    { name: "Commande", href: "/admin/order" },
-    { name: "Clients", href: "/admin/user" },
-    { name: "Blog", href: "/admin/blogA" },
-    { name: "Paramètres", href: "/admin/settings" },
+    { name: "Tableau de bord", to: "/admin" },
+    { name: "Gestion de Produit", to: "/admin/productmanagement" },
+    { name: "Commande", to: "/admin/order" },
+    { name: "Clients", to: "/admin/user" },
+    { name: "Blog", to: "/admin/blogA" },
+    { name: "Paramètres", to: "/admin/settings" },
   ];
 
   return (
@@ -35,9 +36,9 @@ function NavbarAdmin() {
         {/* Desktop Links */}
         <ul className="hidden md:flex items-center gap-8">
           {links.map((link) => (
-            <li key={link.href}>
+            <li key={link.to}>
               <Link
-                to={link.href}
+                to={link.to}
                 className="text-white hover:text-purple-400 transition"
               >
                 {link.name}
@@ -50,19 +51,15 @@ function NavbarAdmin() {
           {!isLoggedIn ? (
             <>
               <li>
-                <Link to="/login">
-                  <Button variant="default" size="sm">
-                    Connexion
-                  </Button>
-                </Link>
+                <Button variant="default" size="sm" onClick={() => navigate("/login")}>
+                  Connexion
+                </Button>
               </li>
 
               <li>
-                <Link to="/register">
-                  <Button variant="outline" size="sm">
-                    Inscription
-                  </Button>
-                </Link>
+                <Button variant="outline" size="sm" onClick={() => navigate("/register")}>
+                  Inscription
+                </Button>
               </li>
             </>
           ) : (
@@ -95,9 +92,9 @@ function NavbarAdmin() {
             className="flex flex-col md:hidden bg-black/80 backdrop-blur-md text-center space-y-4 py-6 px-6"
           >
             {links.map((link) => (
-              <li key={link.href}>
+              <li key={link.to}>
                 <Link
-                  to={link.href}
+                  to={link.to}
                   className="text-white hover:text-purple-400 transition"
                   onClick={() => setMobileOpen(false)}
                 >
@@ -109,19 +106,29 @@ function NavbarAdmin() {
             {!isLoggedIn ? (
               <>
                 <li>
-                  <Link to="/login" onClick={() => setMobileOpen(false)}>
-                    <Button variant="default" size="sm">
-                      Connexion
-                    </Button>
-                  </Link>
+                  <Button
+                    variant="default"
+                    size="sm"
+                    onClick={() => {
+                      navigate("/login");
+                      setMobileOpen(false);
+                    }}
+                  >
+                    Connexion
+                  </Button>
                 </li>
 
                 <li>
-                  <Link to="/register" onClick={() => setMobileOpen(false)}>
-                    <Button variant="outline" size="sm">
-                      Inscription
-                    </Button>
-                  </Link>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      navigate("/register");
+                      setMobileOpen(false);
+                    }}
+                  >
+                    Inscription
+                  </Button>
                 </li>
               </>
             ) : (

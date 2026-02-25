@@ -6,19 +6,20 @@ const storage = new CloudinaryStorage({
   cloudinary,
   params: {
     folder: "agroking_blogs",
-    allowed_formats: ["jpg", "jpeg", "png", "webp"],
+    allowedFormats: ["jpg", "jpeg", "png", "webp"], // ✔ camelCase correct
   },
 });
 
-const uploadBlog = multer({
+const uploadMiddleware = multer({
   storage,
   limits: { fileSize: 15 * 1024 * 1024 }
-}).single("image"); 
+}).single("image");
 
+// exporte un middleware
 module.exports = (req, res, next) => {
-  uploadBlog(req, res, function (err) {
+  uploadMiddleware(req, res, function (err) {
     if (err) {
-      console.error("ERREUR MULTER/CLOUDINARY BLOG :", err);
+      console.error("🔥 ERREUR MULTER/CLOUDINARY BLOG :", err);
       return res.status(500).json({ message: "Erreur upload blog", error: err });
     }
     next();

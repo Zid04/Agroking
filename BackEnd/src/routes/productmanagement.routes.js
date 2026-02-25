@@ -22,10 +22,10 @@ router.get("/categories", (req, res) => {
 router.get("/", getProducts);
 
 // Ajouter un produit
-router.post("/", auth, adminAuth, upload.single("media"), createProduct);
+router.post("/", auth, adminAuth, upload, createProduct);
 
 // Modifier un produit
-router.put("/:id", auth, adminAuth, upload.single("media"), updateProduct);
+router.put("/:id", auth, adminAuth, upload, updateProduct);
 
 // Supprimer un produit
 router.delete("/:id", auth, adminAuth, deleteProduct);

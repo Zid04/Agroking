@@ -3,7 +3,7 @@ import { AuthProvider } from "./context/AuthContext";
 import PrivateRoute from "./routes/PrivateRoutes";
 
 // Public
-import PublicLayout from "./pages/user/PublicLayout";
+import PublicLayout from "./pages/user/publicLayout";
 import Home from "./pages/user/Home";
 import About from "./pages/user/About";
 import Products from "./pages/user/Products";

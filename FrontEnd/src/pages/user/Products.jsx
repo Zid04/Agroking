@@ -27,7 +27,7 @@ export default function ProductsSection() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await API.get("/productmanagement"); 
+        const res = await API.get("/productmanagement");
         setProducts(res.data);
       } catch (err) {
         console.error("Erreur chargement produits", err);
@@ -66,7 +66,7 @@ export default function ProductsSection() {
 
   // Modifier quantité
   const updateQuantity = async (productId, newQty) => {
-    if (!productId) return;
+    if (!productId || newQty < 1) return;
     try {
       const res = await API.put("/cart", {
         productId,
@@ -107,13 +107,10 @@ export default function ProductsSection() {
         quantity: item.quantity
       }));
 
-      await API.post("/orders", {
-        products: formattedProducts
-      });
+      await API.post("/orders", { products: formattedProducts });
 
       alert("Commande envoyée !");
       clearCart();
-
     } catch (err) {
       if (!handleAuthError(err, "valider votre commande")) {
         alert(err.response?.data?.message || "Erreur lors de la validation de la commande");
@@ -161,7 +158,11 @@ export default function ProductsSection() {
           >
             <div className="relative h-56 w-full overflow-hidden">
               <img
-                src={product.media} 
+                src={
+                  product.media?.startsWith("http")
+                    ? product.media
+                    : "/default-product.jpg"
+                }
                 alt={product.name}
                 className="h-full w-full object-cover"
               />

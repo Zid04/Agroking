@@ -24,7 +24,6 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Vérification mot de passe fort
     if (!strongPassword.test(formData.password)) {
       alert(
         "Mot de passe trop faible.\nIl doit contenir :\n- 8 caractères minimum\n- 1 majuscule\n- 1 chiffre\n- 1 caractère spécial"
@@ -33,7 +32,9 @@ export default function Register() {
     }
 
     try {
-      const res = await API.post("/api/auth/register", formData); 
+      // ✔ CORRECTION ICI : plus de /api
+      const res = await API.post("/auth/register", formData);
+
       const { token, user } = res.data;
 
       login(token, user, user.role);
@@ -55,7 +56,6 @@ export default function Register() {
       >
         <h2 className="text-3xl font-bold text-blue-400 text-center">Inscription</h2>
 
-        {/* Nom */}
         <div className="flex flex-col gap-1">
           <label className="text-white/70">Nom complet</label>
           <input
@@ -69,7 +69,6 @@ export default function Register() {
           />
         </div>
 
-        {/* Email */}
         <div className="flex flex-col gap-1">
           <label className="text-white/70">Email</label>
           <input
@@ -83,7 +82,6 @@ export default function Register() {
           />
         </div>
 
-        {/* Téléphone */}
         <div className="flex flex-col gap-1">
           <label className="text-white/70">Téléphone</label>
           <input
@@ -97,7 +95,6 @@ export default function Register() {
           />
         </div>
 
-        {/* Mot de passe */}
         <div className="flex flex-col gap-1">
           <label className="text-white/70">Mot de passe</label>
           <input

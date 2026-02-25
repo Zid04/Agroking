@@ -115,3 +115,21 @@ exports.updateUser = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+/* ============================
+   USER : PROFIL UTILISATEUR CONNECTÉ
+   ============================ */
+exports.getProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+
+    if (!user) {
+      return res.status(404).json({ message: "Utilisateur introuvable" });
+    }
+
+    res.json(user);
+
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+

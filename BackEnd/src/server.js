@@ -8,7 +8,8 @@ const app = express();
 
 // CORS middleware - allow requests from frontend
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: ["http://localhost:5173",
+  "https://agroking.vercel.app"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));

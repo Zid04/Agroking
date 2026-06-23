@@ -2,9 +2,10 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 const Blog = require("../models/blog.model");
 
-// Fonction pour générer l’URL publique Supabase
-const getPublicUrl = (filePath) => {
-  return `${process.env.SUPABASE_URL}/storage/v1/object/public/Images/${filePath}`;
+// Fonction pour générer l’URL publique Cloudinary
+const getPublicUrl = (fileName) => {
+  const nameWithoutExt = fileName.replace(/\.[^.]+$/, "");
+  return `https://res.cloudinary.com/${process.env.CLOUDINARY_NAME}/video/upload/${nameWithoutExt}`;
 };
 
 // === LISTE DES VIDÉOS AVEC TITRE, DESCRIPTION, DATE PERSONNALISABLES ===

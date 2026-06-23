@@ -1,34 +1,22 @@
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
-import { supabase } from "../../lib/supabaseClient";
+
+const heroVideoUrl = `https://res.cloudinary.com/${import.meta.env.VITE_CLOUDINARY_NAME}/video/upload/Hero`;
 
 export default function HeroSection() {
-  const [heroVideoUrl, setHeroVideoUrl] = useState("");
-
-  useEffect(() => {
-    // Récupère l'URL publique de la vidéo depuis Supabase
-    const { data } = supabase.storage.from("Images").getPublicUrl("Hero.mp4");
-    if (data && data.publicUrl) {
-      setHeroVideoUrl(data.publicUrl);
-    }
-  }, []);
-
   return (
     <section className="relative w-screen h-screen overflow-hidden">
-      {/* 🎥 Background Video */}
-      {heroVideoUrl && (
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute top-0 left-0 w-full h-full object-cover"
-        >
-          <source src={heroVideoUrl} type="video/mp4" />
-        </video>
-      )}
+      {/* Background Video */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute top-0 left-0 w-full h-full object-cover"
+      >
+        <source src={heroVideoUrl} type="video/mp4" />
+      </video>
 
       {/* Overlay — rendu transparent pour laisser le background visible */}
       <div className="absolute inset-0 bg-transparent"></div>

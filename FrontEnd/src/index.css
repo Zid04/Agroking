@@ -20,7 +20,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #001f3f; 
+  background-color: #273068; 
 }
 
 
@@ -44,7 +44,7 @@ button {
   font-size: 1rem;
   font-weight: 500;
   font-family: inherit;
-  background-color: #0cf4e4;
+  background-color: #B5E1FA;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -75,13 +75,13 @@ select option {
     color: #0cf4e4;
   }
   button {
-    background-color: #0cf4e4;
+    background-color: #B5E1FA;
   }
 }
 
 /* Forcer le fond global noir pour l'application */
 :root, html, body, #root {
-  background-color: #001f3f !important;
+  background-color: #273068 !important;
 }
 
 /* Tailwind base overrides pour sections 

@@ -4,16 +4,52 @@ Application web de gestion et vente de produits piscicoles.
 
 ## Stack technique
 
-- **React** + Vite
-- **Tailwind CSS**
-- **React Router**
-- **Cloudinary** — stockage des images produits et vidéos
+| Couche | Technologie |
+|---|---|
+| UI | React 19 + Vite |
+| Style | Tailwind CSS 4 |
+| Navigation | React Router DOM 7 |
+| Animations | Framer Motion |
+| Requêtes HTTP | Axios |
+| Notifications | React Hot Toast |
+| Icônes | Lucide React / React Icons |
+| Emails | EmailJS |
+| Stockage médias | Cloudinary (images + vidéos) |
+| Base de données | MongoDB Atlas via Mongoose (BackEnd) |
+
+## Commandes
+
+```bash
+# Installer les dépendances
+npm install
+
+# Lancer en développement
+npm run dev
+
+# Build de production
+npm run build
+
+# Prévisualiser le build
+npm run preview
+
+# Linter
+npm run lint
+```
 
 ## Variables d'environnement
+
+Créer un fichier `.env` à la racine du dossier `FrontEnd/` :
 
 ```env
 VITE_CLOUDINARY_NAME=dkv7cnmaa
 ```
+
+## Déploiement
+
+Le frontend est déployé sur **Vercel** : [agroking.vercel.app](https://agroking.vercel.app)
+
+- Chaque `git push` sur `main` déclenche un redéploiement automatique sur Vercel.
+- Le backend est déployé sur **Render** : `agroking-8zxq.onrender.com`
 
 ## Pourquoi Supabase a été retiré
 

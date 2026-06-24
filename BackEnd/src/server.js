@@ -45,6 +45,16 @@ mongoose
   .then(() => {
     const port = process.env.PORT || 5000;
     app.listen(port, () => console.log(`Server running sur le port ${port}`));
+
+    // Ping MongoDB toutes les 4 minutes pour éviter la mise en pause
+    setInterval(async () => {
+      try {
+        await mongoose.connection.db.admin().ping();
+        console.log(`[${new Date().toISOString()}] MongoDB keepalive OK`);
+      } catch (err) {
+        console.error("MongoDB keepalive échoué :", err.message);
+      }
+    }, 4 * 60 * 1000);
   })
   .catch((err) => console.error("Erreur connexion MongoDB :", err));
   console.log("Mongo URI:", process.env.MONGO_URI);

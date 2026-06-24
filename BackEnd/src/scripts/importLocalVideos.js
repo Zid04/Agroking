@@ -18,7 +18,7 @@ const videos = [
   { title: "Agroking 13", content: "Plus qu'un travail c'est une passion", date: "2025", mediaUrl: "https://res.cloudinary.com/dkv7cnmaa/video/upload/v1782256457/blog13_j0t2av.mp4" },
   { title: "Agroking 14", content: "Plus qu'un travail c'est une passion", date: "2025", mediaUrl: "https://res.cloudinary.com/dkv7cnmaa/video/upload/v1782256461/blog14_a6uniq.mp4" },
   { title: "Agroking 15", content: "Plus qu'un travail c'est une passion", date: "2025", mediaUrl: "https://res.cloudinary.com/dkv7cnmaa/video/upload/v1782256462/blog15_wp5m2e.mp4" },
-  { title: "Agroking 16", content: "Plus qu'un travail c'est une passion", date: "2025", mediaUrl: "" },
+  { title: "Agroking 16", content: "Plus qu'un travail c'est une passion", date: "2025", mediaUrl: "https://res.cloudinary.com/dkv7cnmaa/video/upload/v1782256459/blog16_b4jkhh.mp4" },
   { title: "Agroking 17", content: "Plus qu'un travail c'est une passion", date: "2025", mediaUrl: "https://res.cloudinary.com/dkv7cnmaa/video/upload/v1782256466/blog17_jlxzm8.mp4" },
   { title: "Agroking 18", content: "Plus qu'un travail c'est une passion", date: "2025", mediaUrl: "https://res.cloudinary.com/dkv7cnmaa/video/upload/v1782256463/blog18_hqsyzj.mp4" },
   { title: "Agroking 19", content: "Plus qu'un travail c'est une passion", date: "2025", mediaUrl: "https://res.cloudinary.com/dkv7cnmaa/video/upload/v1782256463/blog19_zaolyr.mp4" },

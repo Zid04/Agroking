@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
 
-const heroVideoUrl = `https://res.cloudinary.com/${import.meta.env.VITE_CLOUDINARY_NAME}/video/upload/Hero`;
+const heroVideoUrl = "https://res.cloudinary.com/dkv7cnmaa/video/upload/v1782256682/Hero_knoq9c.mp4";
 
 export default function HeroSection() {
   return (

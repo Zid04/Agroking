@@ -20,7 +20,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #000; 
+  background-color: #001f3f; 
 }
 
 
@@ -81,7 +81,7 @@ select option {
 
 /* Forcer le fond global noir pour l'application */
 :root, html, body, #root {
-  background-color: #000 !important;
+  background-color: #001f3f !important;
 }
 
 /* Tailwind base overrides pour sections 
